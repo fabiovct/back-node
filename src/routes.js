@@ -22,6 +22,7 @@ routes.use(express.static(__dirname + '/'));*/
 
 
 routes.post('/auth', UserController.loginAuth);
+routes.get('/logout', UserController.logout);
 
 routes.get('/', UserController.selectUsers);
 //products
@@ -31,18 +32,4 @@ routes.get('/id/:id', ProductsCoontroller.selectById);
 routes.put('/product/edit', ProductsCoontroller.editProduct);
 routes.delete('/product/delete', ProductsCoontroller.deleteProduct);
 
-
-//notas
-
-
-//const upload = multer(uploadConfig);
-
-//routes.post('/sessions', SessionController.store);
-
-//routes.get('/spots', SpotController.index);
-//routes.post('/spots', upload.single('thumbnail') , SpotController.store);
-
-//routes.get('/dashboard', DashboardController.show);
-
-//routes.post('/spots/:spot_id/bookings', BookingController.store);
 module.exports = routes;

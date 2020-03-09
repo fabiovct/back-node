@@ -41,6 +41,11 @@ module.exports = {
         }
     },
 
+    async logout(res, response) {
+        session.email = ''
+        response.json("usuario deslogado")
+
+},
 
     async selectUsers(request, res, next) {
         if(!session.email){
