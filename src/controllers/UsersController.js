@@ -28,15 +28,25 @@ module.exports = {
             db_connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
                 if (results.length > 0) {
                     session.email = email
-                    response.json("usuario logado com sucesso!")
+                    response.json([{
+                        login: email,
+                        status: 'true',
+                        msg: 'Usuario logado com sucesso'
+                      }]);
                     //response.redirect('/');
                 } else {
-                    response.send('Incorrect Username and/or Password!');
+                    response.json([{
+                        status: 'failed',
+                        errMsg: 'Incorrect Username and/or Password!'
+                      }]);
                 }			
                 response.end();
             });
         } else {
-            response.send('Please enter Username and Password!');
+            response.json([{
+                status: 'failed',
+                errMsg: 'Please enter Username and Password!'
+              }]);
             response.end();
         }
     },

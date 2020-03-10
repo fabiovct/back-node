@@ -5,7 +5,10 @@ module.exports = {
     
     async listProducts(req, res, next) {
         if(!session.email){
-            res.send('Acesso Negado');
+            res.json([{
+                status: 'failed',
+                errMsg: 'Acesso Negado'
+              }]);
             res.end();
         } else {
             db_connection.query('SELECT * FROM products', function (err, rows, fields){
