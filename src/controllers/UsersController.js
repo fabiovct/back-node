@@ -58,12 +58,13 @@ module.exports = {
 },
 
     async selectUsers(request, res, next) {
-        if(!session.email){
-            res.send('Acesso Negado');
-            res.end();
-        } else {
+        //if(!session.email){
+            //res.send('Acesso Negado');
+            //res.end();
+        //} else {
 
         db_connection.query('SELECT id, email FROM users', function (err, rows, fields){
+            
             if (!err)
           res.json(rows)
         else
@@ -73,7 +74,7 @@ module.exports = {
           }])
         });
     
-    }
+    //}
 }
     
 }

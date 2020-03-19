@@ -1,3 +1,5 @@
+//require("dotenv-safe").config();
+var jwt = require('jsonwebtoken');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');

@@ -1,10 +1,11 @@
 var mysql = require('mysql');
+const { db } = require('../.env')
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'back-laravel'
+    host : 'localhost',
+        user: 'root',
+        password: '',
+        database: 'back-laravel'
 });
 
 connection.connect(function (err) {
