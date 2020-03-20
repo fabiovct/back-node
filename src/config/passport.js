@@ -18,9 +18,6 @@ async  token(req,response, next){
         db_connection.query('SELECT * FROM users WHERE id = ?', [token.id], function(error, results, fields) {
             if (results.length > 0) {
                 return next();
-                //response.send(true)
-                
-                //response.redirect('/');
             } else {
                 response.json([{
                     status: 'false',

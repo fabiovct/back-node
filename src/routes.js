@@ -24,23 +24,24 @@ routes.use(bodyParser.json());
 
 routes.use(express.static(__dirname + '/'));*/
 
-
-//routes.post('/auth', UserController.loginAuth);
 routes.post('/login', AuthController.login);
 routes.post('/validateToken', AuthController.validateToken);
-//routes.route('/api').all(passport.token).get(UserController.selectUsers);
-//routes.route('/api').all(passport.token);
-//console.log(passport.token());
-routes.all('/api', passport.token)
+
+//users
+routes.route('/api/users').all(passport.token)
+  .get(UserController.selectUsers);
 
 routes.get('/logout', UserController.logout);
 
-routes.get('/api', UserController.selectUsers);
+//routes.get('/api/users', UserController.selectUsers);
 //products
-routes.get('/product', ProductsCoontroller.listProducts);
-routes.post('/product/create', ProductsCoontroller.createProduct);
-routes.get('/id/:id', ProductsCoontroller.selectById);
-routes.put('/product/edit', ProductsCoontroller.editProduct);
-routes.delete('/product/delete', ProductsCoontroller.deleteProduct);
+routes.route('/api/product').all(passport.token)
+  .get( ProductsCoontroller.listProducts)
+  .post( ProductsCoontroller.createProduct)
+  .put(ProductsCoontroller.editProduct)
+  .delete( ProductsCoontroller.deleteProduct)
+routes.route('/api/product/:id').all(passport.token)
+  .get(ProductsCoontroller.selectById);
+
 
 module.exports = routes;
